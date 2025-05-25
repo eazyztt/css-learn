@@ -30,7 +30,7 @@ export default function ChatInside() {
 
     // 2. Отправляем сообщение на сервер
     try {
-      await fetch(`${import.meta.env.HOST}/`, {
+      await fetch(`${import.meta.env.VITE_HOST}/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export default function ChatInside() {
   const fetchShortMessages = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.HOST}/shortMessages?` +
+        `${import.meta.env.VITE_HOST}/shortMessages?` +
           new URLSearchParams({
             chatId: id,
           }).toString(),

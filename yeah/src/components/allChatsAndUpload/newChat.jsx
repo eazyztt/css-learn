@@ -26,13 +26,16 @@ export default function NewChat() {
     setIsLoading(true);
 
     try {
-      const responseFromChats = await fetch(`${import.meta.env.HOST}/bigChat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+      const responseFromChats = await fetch(
+        `${import.meta.env.VITE_HOST}/bigChat`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
 
       const resultFromChats = await responseFromChats.json();
 
@@ -40,7 +43,7 @@ export default function NewChat() {
 
       formData.append("id", resultFromChats.id);
 
-      const response = await fetch(`${import.meta.env.HOST}/upload`, {
+      const response = await fetch(`${import.meta.env.VITE_HOST}/upload`, {
         method: "POST",
         body: formData,
       });
