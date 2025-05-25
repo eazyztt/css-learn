@@ -10,7 +10,7 @@ export default function InutScryan() {
 
   const fetchBigChats = async () => {
     try {
-      const response = await fetch("http://localhost:3000/bigChats", {
+      const response = await fetch(`${import.meta.env.HOST}/bigChats`, {
         method: "GET",
         credentials: "include",
       });

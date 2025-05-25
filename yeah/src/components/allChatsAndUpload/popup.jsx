@@ -6,7 +6,7 @@ const Popup = ({ setOpen, options, setMsgOption, chatId, msgOption }) => {
 
   async function chooseMsgOption(msgOption, chatId) {
     try {
-      await fetch("http://localhost:3000/", {
+      await fetch(`${import.meta.env.HOST}/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

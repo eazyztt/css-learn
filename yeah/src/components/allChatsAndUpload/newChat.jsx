@@ -26,7 +26,7 @@ export default function NewChat() {
     setIsLoading(true);
 
     try {
-      const responseFromChats = await fetch("http://localhost:3000/bigChat", {
+      const responseFromChats = await fetch(`${import.meta.env.HOST}/bigChat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export default function NewChat() {
 
       formData.append("id", resultFromChats.id);
 
-      const response = await fetch("http://localhost:3000/upload", {
+      const response = await fetch(`${import.meta.env.HOST}/upload`, {
         method: "POST",
         body: formData,
       });

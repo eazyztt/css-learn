@@ -16,7 +16,7 @@ export default function TelegramLogin() {
 
     // Глобальная функция для Telegram (будет вызвана при авторизации)
     window.onTelegramAuth = function (user) {
-      fetch("http://localhost:3000/auth/telegram", {
+      fetch(`${import.meta.env.HOST}/auth/telegram`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
