@@ -1,0 +1,89 @@
+import { Msg } from "./userAndGptMsg";
+import { MsgUser } from "./userAndGptMsg";
+import TypeMessage from "./typeMessage";
+import Header from "../allChatsAndUpload/header";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
+
+export default function ChatInside() {
+  const [text, setText] = useState("");
+  const [allChats, setAllChats] = useState([]);
+
+  // const location = useLocation();
+  //const msgOption = location.state?.message;
+
+  const { id } = useParams();
+  console.log(`this is our ${id}`);
+
+  const handleSend = async (chatId) => {
+    if (!text.trim()) return;
+
+    // 1. Добавляем сообщение сразу в allChats
+    const newMessage = {
+      message: text,
+      role: "User", // или как у тебя помечаются авторы сообщений
+    };
+
+    setAllChats((prev) => [...prev, newMessage]);
+    setText(""); // очищаем input
+
+    // 2. Отправляем сообщение на сервер
+    try {
+      await fetch("http://localhost:3000/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: text, chatId: chatId, role: "User" }),
+      });
+    } catch (error) {
+      console.error("Ошибка отправки:", error);
+      // тут можно обновить состояние с ошибкой или показать уведомление
+    }
+  };
+
+  const fetchShortMessages = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/shortMessages?" +
+          new URLSearchParams({
+            chatId: id,
+          }).toString(),
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      console.log(data);
+      setAllChats(data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchShortMessages();
+  }, []);
+
+  return (
+    <div class=" bg-slate-700 mt-30">
+      <Header />
+      <div class="flex flex-col  m-5  bg-slate-700 pt-7 gap-5 pb-55">
+        {allChats.map((chat) => {
+          if (chat.role === "User") {
+            return <MsgUser chat={chat} />;
+          } else {
+            return <Msg chat={chat} />;
+          }
+        })}
+      </div>
+
+      <TypeMessage setText={setText} handleSend={handleSend} id={id} />
+    </div>
+  );
+}
