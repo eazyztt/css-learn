@@ -2,11 +2,13 @@ import { Msg } from "./userAndGptMsg";
 import { MsgUser } from "./userAndGptMsg";
 import TypeMessage from "./typeMessage";
 import Header from "../allChatsAndUpload/header";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 //import { useLocation } from "react-router-dom";
 
 export default function ChatInside() {
+  const bottomRef = useRef(null);
+
   const [text, setText] = useState("");
   const [allChats, setAllChats] = useState([]);
 
@@ -70,10 +72,14 @@ export default function ChatInside() {
     fetchShortMessages();
   }, []);
 
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [text]);
+
   return (
-    <div class=" bg-slate-700 mt-30">
+    <div class=" bg-slate-700 mt-20">
       <Header />
-      <div class="flex flex-col  m-5  bg-slate-700 pt-7 gap-5 pb-55">
+      <div class="flex flex-col  m-5  bg-slate-700 pt-7 gap-5 pb-35">
         {allChats.map((chat) => {
           if (chat.role === "User") {
             return <MsgUser chat={chat} />;
@@ -81,9 +87,15 @@ export default function ChatInside() {
             return <Msg chat={chat} />;
           }
         })}
+        <div ref={bottomRef} />
       </div>
 
-      <TypeMessage setText={setText} handleSend={handleSend} id={id} />
+      <TypeMessage
+        setText={setText}
+        handleSend={handleSend}
+        id={id}
+        text={text}
+      />
     </div>
   );
 }

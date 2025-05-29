@@ -60,7 +60,7 @@ export default function InutScryan() {
 
       <div class="bg-white "></div>
       <button
-        class="px-11 py-9 bg-cyan-600 fixed bottom-10 right-10 rounded-full font-bold text-2xl text-white active:bg-cyan-700"
+        class="px-11 py-9 bg-sky-500 fixed bottom-10 right-4 rounded-full font-bold text-2xl text-white active:bg-sky-600"
         onClick={async () => {
           navigate("/newChat");
         }}

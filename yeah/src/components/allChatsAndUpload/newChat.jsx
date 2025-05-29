@@ -73,7 +73,7 @@ export default function NewChat() {
   }, [options]);
 
   return (
-    <div class="bg-slate-700">
+    <div class="bg-slate-700 items-center flex flex-col">
       {isOpen && options.length > 0 && (
         <Popup
           msgOption={msgOption}
@@ -93,7 +93,7 @@ export default function NewChat() {
         onClick={async () => {
           await handleUpload();
         }}
-        class="bg-cyan-600 text-white  p-5 w-dvw rounded-3xl active:bg-cyan-700 fixed bottom-10 "
+        class="bg-sky-500 text-white  p-5 w-[90dvw] rounded-full active:bg-sky-600 fixed bottom-5 shadow-lg"
       >
         Submit
       </button>
