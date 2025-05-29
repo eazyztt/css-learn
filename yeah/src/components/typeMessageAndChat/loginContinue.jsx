@@ -7,17 +7,19 @@ export default function AuthPage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");
+    console.log(token);
+
     if (token) {
       loginWithJwt(token);
     }
   }, []);
 
-  async function loginWithJwt(token) {
+  async function loginWithJwt(auth_token) {
     try {
       const res = await fetch(`${import.meta.env.VITE_HOST}/api/auth`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token }),
+        body: JSON.stringify({ auth_token }),
         credentials: "include", // если используешь куки
       });
 
