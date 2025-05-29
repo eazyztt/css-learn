@@ -28,7 +28,7 @@ export default function PreamblePage() {
         </p>
         <a
           class="text-gray-200 p-3 bg-sky-500 rounded-full active:bg-sky-600 shadow-lg"
-          href=""
+          href="https://t.me/dima123456_bot?start=auth"
         >
           Open bot and get link
         </a>

@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingOverlay from "../allChatsAndUpload/LoadingOverlay";
 
 export default function AuthPage() {
+  const navigate = useNavigate();
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");
@@ -24,7 +25,7 @@ export default function AuthPage() {
 
       if (data.ok) {
         console.log("Пользователь авторизован:", data.user);
-        useNavigate("/");
+        navigate("/");
         // TODO: сохранить токен в httpOnly cookie (лучше) или localStorage
       } else {
         console.error("Ошибка авторизации:", data.error);
