@@ -14,12 +14,12 @@ export default function AuthPage() {
     }
   }, []);
 
-  async function loginWithJwt(auth_token) {
+  async function loginWithJwt(token) {
     try {
       const res = await fetch(`${import.meta.env.VITE_HOST}/api/auth`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ auth_token }),
+        body: JSON.stringify({ token }),
         credentials: "include", // если используешь куки
       });
 
