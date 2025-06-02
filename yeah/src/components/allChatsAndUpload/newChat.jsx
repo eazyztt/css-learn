@@ -46,6 +46,10 @@ export default function NewChat() {
       const response = await fetch(`${import.meta.env.VITE_HOST}/upload`, {
         method: "POST",
         body: formData,
+        headers: {
+          "Content-Type": "application/json",
+          auth_token: window.Telegram?.WebApp.initData,
+        },
       });
 
       const result = await response.json();

@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import ChatCard from "./chatCard";
 import Header from "./header";
 import TelegramLogin from "../typeMessageAndChat/tgLogin";
+import LoadingOverlay from "./LoadingOverlay";
 
 export default function InutScryan() {
+  const [loaded, setLoaded] = useState(false);
   const [chats, setChat] = useState([]);
   const navigate = useNavigate();
 
@@ -21,6 +23,7 @@ export default function InutScryan() {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
+      setLoaded(true);
       console.log(data);
       setChat(data);
     } catch (error) {
@@ -54,6 +57,7 @@ export default function InutScryan() {
   console.log("InutScryan chats:", chats);
   return (
     <>
+      {loaded ? <LoadingOverlay /> : ""}
       <Header />
       <div class="mt-30">
         {chats.map((chat) => (
