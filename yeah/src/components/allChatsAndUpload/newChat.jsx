@@ -47,7 +47,7 @@ export default function NewChat() {
         method: "POST",
         body: formData,
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
           auth_token: window.Telegram?.WebApp.initData,
         },
       });
