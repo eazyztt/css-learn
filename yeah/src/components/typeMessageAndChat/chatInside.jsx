@@ -8,6 +8,7 @@ import LoadingOverlay from "../allChatsAndUpload/LoadingOverlay";
 //import { useLocation } from "react-router-dom";
 
 export default function ChatInside() {
+  const [loaded, setLoaded] = useState(true);
   const bottomRef = useRef(null);
 
   const [text, setText] = useState("");
@@ -33,6 +34,7 @@ export default function ChatInside() {
 
     // 2. Отправляем сообщение на сервер
     try {
+      setLoaded(false);
       await fetch(`${import.meta.env.VITE_HOST}/`, {
         method: "POST",
         headers: {
@@ -42,6 +44,8 @@ export default function ChatInside() {
         body: JSON.stringify({ message: text, chatId: chatId, role: "User" }),
       });
       await fetchShortMessages();
+      setLoaded(false);
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     } catch (error) {
       console.error("Ошибка отправки:", error);
       // тут можно обновить состояние с ошибкой или показать уведомление
@@ -84,6 +88,7 @@ export default function ChatInside() {
 
   return (
     <div class=" bg-slate-700 mt-20">
+      {!loaded ? <LoadingOverlay /> : ""}
       <Header />
       <div class="flex flex-col  m-5  bg-slate-700 pt-7 gap-5 pb-35">
         {allChats.map((chat) => {
