@@ -4,6 +4,7 @@ import TypeMessage from "./typeMessage";
 import Header from "../allChatsAndUpload/header";
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
+import LoadingOverlay from "../allChatsAndUpload/LoadingOverlay";
 //import { useLocation } from "react-router-dom";
 
 export default function ChatInside() {
