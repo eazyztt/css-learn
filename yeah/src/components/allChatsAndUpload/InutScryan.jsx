@@ -61,7 +61,12 @@ export default function InutScryan() {
       <Header />
       <div class="mt-30">
         {chats.map((chat) => (
-          <ChatCard key={chat.id} name={chat.title} chatId={chat.id} />
+          <ChatCard
+            key={chat.id}
+            name={chat.title}
+            chatId={chat.id}
+            time={chat.createdAt}
+          />
         ))}
       </div>
 

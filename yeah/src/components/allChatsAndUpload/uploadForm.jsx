@@ -97,7 +97,7 @@ export default function UploadForm({ files, setFiles }) {
               >
                 <span className="truncate">
                   <img
-                    class="w-25 h-20 border border-red-500"
+                    class="w-[20dvw] h-20 border border-red-500"
                     src={URL.createObjectURL(file)}
                   />
                 </span>

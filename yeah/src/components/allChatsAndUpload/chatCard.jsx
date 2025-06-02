@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 
-export default function ChatCard({ name, msg, chatId }) {
+function formatTime(date) {
+  const d = new Date(date);
+  const hours = d.getHours().toString().padStart(2, "0");
+  const minutes = d.getMinutes().toString().padStart(2, "0");
+  return `${hours}:${minutes}`;
+}
+
+export default function ChatCard({ name, msg, chatId, time }) {
   return (
     <div>
       <Link
@@ -16,7 +23,7 @@ export default function ChatCard({ name, msg, chatId }) {
                 Last message will apear here
               </p>
             </div>
-            <p class="pr-35 text-gray-300 font-medium">6:14</p>
+            <p class="pr-35 text-gray-300 font-medium">{formatTime(time)}</p>
           </div>
           <p class="font-light pt-3">{msg}</p>
         </div>
