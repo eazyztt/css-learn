@@ -44,7 +44,7 @@ export default function ChatInside() {
         body: JSON.stringify({ message: text, chatId: chatId, role: "User" }),
       });
       await fetchShortMessages();
-      setLoaded(false);
+      setLoaded(true);
       bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     } catch (error) {
       console.error("Ошибка отправки:", error);

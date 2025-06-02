@@ -56,6 +56,8 @@ export default function NewChat() {
       console.log(result);
 
       setOptions(result.message_options);
+      setIsLoading(false);
+      setOpen(true);
       console.log(options);
 
       setFiles([]);
@@ -65,15 +67,6 @@ export default function NewChat() {
       console.error("Ошибка загрузки:", error);
     }
   };
-
-  useEffect(() => {
-    if (options.length > 0) {
-      console.log(options);
-
-      setIsLoading(false);
-      setOpen(true);
-    }
-  }, [options]);
 
   return (
     <div class="bg-slate-700 items-center flex flex-col">
