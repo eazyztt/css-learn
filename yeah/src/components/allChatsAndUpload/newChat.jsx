@@ -32,8 +32,8 @@ export default function NewChat() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            auth_token: window.Telegram?.WebApp.initData,
           },
-          credentials: "include",
         }
       );
 

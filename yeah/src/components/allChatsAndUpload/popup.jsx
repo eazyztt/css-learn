@@ -10,6 +10,7 @@ const Popup = ({ setOpen, options, setMsgOption, chatId, msgOption }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          auth_token: window.Telegram?.WebApp.initData,
         },
         body: JSON.stringify({
           message: msgOption,

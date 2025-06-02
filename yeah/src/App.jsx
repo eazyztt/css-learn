@@ -11,7 +11,6 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/login" element={<TelegramLogin />} />
         <Route path="/newChat" element={<NewChat />} />
         <Route path="/" element={<InutScryan />} />
         <Route path="/chat/:id" element={<ChatInside />} />

@@ -18,7 +18,10 @@ export default function AuthPage() {
     try {
       const res = await fetch(`${import.meta.env.VITE_HOST}/api/auth`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          auth_token: window.Telegram?.WebApp.initData,
+        },
         body: JSON.stringify({ token }),
         credentials: "include", // если используешь куки
       });

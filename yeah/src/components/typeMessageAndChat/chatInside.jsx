@@ -53,8 +53,11 @@ export default function ChatInside() {
             chatId: id,
           }).toString(),
         {
+          headers: {
+            auth_token: window.Telegram?.WebApp.initData,
+          },
+
           method: "GET",
-          credentials: "include",
         }
       );
       if (!response.ok) {

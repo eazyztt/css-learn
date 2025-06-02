@@ -36,8 +36,8 @@ export default function InutScryan() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          auth_token: window.Telegram?.WebApp.initData,
         },
-        credentials: "include",
       });
 
       const result = await response.json();
