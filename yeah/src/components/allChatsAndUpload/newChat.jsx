@@ -83,7 +83,7 @@ export default function NewChat() {
       {!isLoading ? (
         <UploadForm files={files} setFiles={setFiles} />
       ) : (
-        <LoadingOverlay />
+        <LoadingOverlay text="Please wait. We need up to one minute to proceed request." />
       )}
       <button
         onClick={async () => {

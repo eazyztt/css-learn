@@ -87,7 +87,11 @@ export default function ChatInside() {
 
   return (
     <div class=" bg-slate-700 mt-20">
-      {!loaded ? <LoadingOverlay /> : ""}
+      {!loaded ? (
+        <LoadingOverlay text="Please wait for response. It can last up to 30 secs." />
+      ) : (
+        ""
+      )}
       <Header />
       <div class="flex flex-col  m-5  bg-slate-700 pt-7 gap-5 pb-35">
         {allChats.map((chat) => {
