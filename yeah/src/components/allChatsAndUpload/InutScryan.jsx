@@ -12,7 +12,10 @@ export default function InutScryan() {
     try {
       const response = await fetch(`${import.meta.env.VITE_HOST}/bigChats`, {
         method: "GET",
-        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          auth_token: window.Telegram?.WebApp.initData,
+        },
       });
       if (!response.ok) {
         throw new Error("Network response was not ok");
