@@ -57,7 +57,7 @@ export default function InutScryan() {
   console.log("InutScryan chats:", chats);
   return (
     <>
-      {!loaded ? <LoadingOverlay /> : ""}
+      {!loaded ? <LoadingOverlay text="Loading..." /> : ""}
       <Header />
       <div class="mt-30">
         {chats.map((chat) => (
