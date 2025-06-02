@@ -18,7 +18,6 @@ const Popup = ({ setOpen, options, setMsgOption, chatId, msgOption }) => {
           role: "GPT",
         }),
       });
-      navigate(`/chat/:${chatId}`);
     } catch (error) {
       console.error("Ошибка отправки:", error);
     }
