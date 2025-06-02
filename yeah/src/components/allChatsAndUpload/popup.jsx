@@ -39,9 +39,9 @@ const Popup = ({ setOpen, options, setMsgOption, chatId, msgOption }) => {
               key={index}
               onClick={async () => {
                 setMsgOption(el);
-                await chooseMsgOption(el, chatId);
                 navigate(`/chat/${chatId}`, { state: { msgOption } });
                 setOpen(false);
+                await chooseMsgOption(el, chatId);
               }}
               class="bg-sky-400 rounded-3xl p-2 text-start active:bg-sky-600"
             >

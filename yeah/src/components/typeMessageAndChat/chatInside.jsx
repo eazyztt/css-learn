@@ -45,7 +45,6 @@ export default function ChatInside() {
       });
       await fetchShortMessages();
       setLoaded(true);
-      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     } catch (error) {
       console.error("Ошибка отправки:", error);
       // тут можно обновить состояние с ошибкой или показать уведомление
@@ -84,7 +83,7 @@ export default function ChatInside() {
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [text]);
+  }, [text, allChats]);
 
   return (
     <div class=" bg-slate-700 mt-20">
