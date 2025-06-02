@@ -40,6 +40,7 @@ export default function ChatInside() {
         },
         body: JSON.stringify({ message: text, chatId: chatId, role: "User" }),
       });
+      await fetchShortMessages();
     } catch (error) {
       console.error("Ошибка отправки:", error);
       // тут можно обновить состояние с ошибкой или показать уведомление
