@@ -36,6 +36,7 @@ export default function ChatInside() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          auth_token: window.Telegram?.WebApp.initData,
         },
         body: JSON.stringify({ message: text, chatId: chatId, role: "User" }),
       });
